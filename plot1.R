@@ -1,11 +1,7 @@
-library(tidyverse)
 
-# previously, I've changed the type of the file to a csv to make it easier to read in
 
-#reading the file as a .csv 
-hpower <- read.csv(file = "household_power_consumption.csv", sep = ";")
-# looking at the data
-glimpse(hpower_filter)
+#reading the file 
+hpower <- read.table("household_power_consumption.txt", header = TRUE, sep=";")
 
 
 # type casting the data types
@@ -28,10 +24,11 @@ hpower_filter$date_time <- as.POSIXct(hpower_filter$date_time)
 
 # Makes the Plot 1
 
+
 hist(hpower_filter$Global_active_power, col="red",
      main="Global Active Power", xlab = "Global Active Power (kilowats)")
 
-dev.copy(png, file="plot1.png")
+dev.copy(png, file="plot1.png", width=480, height=480)
 
 dev.off()
 

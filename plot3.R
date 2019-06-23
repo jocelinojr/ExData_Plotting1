@@ -1,12 +1,6 @@
-library(tidyverse)
 
-# previously, I've changed the type of the file to a csv to make it easier to read in
-
-#reading the file as a .csv 
-hpower <- read.csv(file = "household_power_consumption.csv", sep = ";")
-# looking at the data
-glimpse(hpower_filter)
-
+#reading the file 
+hpower <- read.table("household_power_consumption.txt", header = TRUE, sep=";")
 
 # type casting the data types
 hpower$Date <- as.Date(hpower$Date, "%d/%m/%Y")
@@ -45,54 +39,11 @@ legend("topright", pch = "________",
        col = c("black", "red", "blue"), 
        legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
 
-dev.copy(png, file="plot3.png")
+dev.copy(png, file="plot3.png", width=480, height=480)
 
 dev.off()
 
 
 
-# Plot 4
-par(mfrow = c(2,2))
-plot(x = hpower_filter$date_time, 
-     y = hpowers$Global_active_power, 
-     type = "l",
-     xlab = "",
-     ylab = "Global Active Power (kilowats)")
-
-
-plot(x = hpower_filter$date_time, 
-     y = hpowers$Voltage, 
-     type = "l",
-     xlab = "datetime",
-     ylab = "Voltage")
-
-
-with(hpower_filter, plot(hpower_filter$date_time, 
-                         Sub_metering_1,
-                         type = "l",
-                         xlab = "",
-                         ylab = "Energy sub Mtering"))
-lines(hpower_filter$date_time, 
-      hpower_filter$Sub_metering_2,
-      col="red")
-
-lines(hpower_filter$date_time, 
-      hpower_filter$Sub_metering_3,
-      col="blue")
-
-legend("topright", pch = "________", 
-       col = c("black", "red", "blue"), 
-       legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
-
-
-with(hpower_filter, plot(hpower_filter$date_time, 
-                         Global_reactive_power,
-                         type = "l",
-                         xlab = "datetime",
-                         ylab = "Global_reactive_power"))
-
-dev.copy(png, file="plot5.png")
-
-dev.off()
 
 
