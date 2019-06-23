@@ -1,7 +1,11 @@
-library(tidyverse)
 
 #reading the file 
-hpower <- read.table("household_power_consumption.txt", header = TRUE, sep=";")
+#reading the file 
+hpower <- read.table("household_power_consumption.txt", 
+                     header = TRUE, 
+                     sep=";", 
+                     na.strings = "?")
+
 
 # type casting the data types
 hpower$Date <- as.Date(hpower$Date, "%d/%m/%Y")
